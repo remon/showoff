@@ -1,14 +1,32 @@
 module ShowOff
   class Auth
-    def generate_token(args)
-      params = args.merge(grant_type: "password",
+    ##
+    #Login method used to authenticate user with username and password
+    #it should return access_token and refresh_token
+    ##
+    def login(args)
+      params = args.merge("grant_type": "password",
                           client_id: $client_id,
                           client_secret: $client_secret)
+      user_tokens = nil
+      begin
+        res = RestClient.post($AUTH_CREATE_URL, params.to_json, { content_type: :json, accept: :json })
+        body = JSON.parse(res.body)
+        user_tokens = body["data"]
+      rescue RestClient::ExceptionWithResponse => err
+        JSON.parse(err.response.body)
+      end
+      user_tokens
+    end
+
+    def logout(token)
+      auth = "Bearer #{token}"
 
       begin
-        r = RestClient.post($AUTH_CREATE_URL, params.to_json, { content_type: :json, accept: :json })
+        res = RestClient.get($AUTH_REVOKE_URL, { :Authorization => auth })
+        body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
-        err.response
+        JSON.parse(err.response.body)
       end
     end
   end
