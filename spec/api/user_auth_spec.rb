@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "User authentication" do
-  context "validates user actions" do
+RSpec.describe "User Authentication" do
+  context "validates user Login/LogOut/Refresh tokens" do
     before(:all) do
       @user_params = {
         username: "mytestuser@showoff.ie",
