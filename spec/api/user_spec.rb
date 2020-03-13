@@ -23,7 +23,7 @@ RSpec.describe "User" do
       params = {
         user: @user_params,
       }
-      response = @showoff_user.create(params)
+      response = @showoff_user.sign_up(params)
 
       expect(response["message"]).to eq("Email can't be blank")
     end
@@ -32,7 +32,7 @@ RSpec.describe "User" do
       params = {
         user: @user_params,
       }
-      response = @showoff_user.create(params)
+      response = @showoff_user.sign_up(params)
 
       expect(response["message"]).to eq("Password can't be blank")
     end
@@ -43,7 +43,7 @@ RSpec.describe "User" do
         user: @user_params,
 
       }
-      response = @showoff_user.create(params)
+      response = @showoff_user.sign_up(params)
 
       expect(response["message"]).to eq("Password is too short (minimum is 6 characters)")
     end
@@ -54,9 +54,9 @@ RSpec.describe "User" do
         user: @user_params,
 
       }
-      response = @showoff_user.create(params)
+      response = @showoff_user.sign_up(params)
 
-      expect(response["message"]).to eq("Success")
+      expect(response["user"]).not_to eq(nil)
     end
 
     it "should validates email uniqueness " do
@@ -67,7 +67,7 @@ RSpec.describe "User" do
 
       }
 
-      response = @showoff_user.create(params)
+      response = @showoff_user.sign_up(params)
 
       expect(response["message"]).to eq("Email has already been taken")
     end

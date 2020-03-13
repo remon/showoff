@@ -1,5 +1,9 @@
 module ShowOff
   class User
+    ####
+    # check email method is used to check email availability
+    # return boolean (true , false)
+    ####
     def check_email(email)
       params = {
         email: email,
@@ -16,7 +20,12 @@ module ShowOff
       end
     end
 
-    def create(args)
+    ####
+    # SignUp method used to create a new user
+    # return user data
+    #TODO:  change it to return the user data or errors only
+    ####
+    def sign_up(args)
       params = args.merge(
         client_id: $client_id,
         client_secret: $client_secret,
@@ -25,6 +34,7 @@ module ShowOff
       begin
         res = RestClient.post($AUTH_USERS_URL, params.to_json, { content_type: :json, accept: :json })
         body = JSON.parse(res.body)
+        user_data = body["data"]
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response)
       end
