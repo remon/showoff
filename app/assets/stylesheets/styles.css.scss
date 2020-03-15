@@ -8,7 +8,31 @@
   padding-bottom: 0.5rem;
 }
 .errors_area {
-  h4 {
+  text-align: center;
+  h6 {
     color: red;
+    font-size: 0.9rem;
   }
+}
+
+.blocker {
+  z-index: 1050;
+}
+.jq-modal {
+  z-index: 1060;
+}
+.inside-modal-header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  color: white;
+  background: green;
+  right: 0px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2rem;
+}
+.form-body {
+  margin-top: 40px;
 }
