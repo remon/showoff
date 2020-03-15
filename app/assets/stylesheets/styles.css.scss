@@ -9,9 +9,14 @@
 }
 .errors_area {
   text-align: center;
-  h6 {
-    color: red;
-    font-size: 0.9rem;
+  ul {
+    margin: 0;
+    list-style: none;
+
+    li {
+      color: red;
+      font-size: 0.9rem;
+    }
   }
 }
 

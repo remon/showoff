@@ -31,6 +31,8 @@ module ShowOff
         client_secret: $client_secret,
       )
 
+      puts params
+
       begin
         res = RestClient.post($AUTH_USERS_URL, params.to_json, { content_type: :json, accept: :json })
         body = JSON.parse(res.body)

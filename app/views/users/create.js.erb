@@ -1,1 +1,1 @@
-$(".errors_area").html("<h6><%= @errors %></h6>");
+$(".errors_area").html("<ul><%= custom_errors_list(@user.errors.full_messages) %> </ul>");

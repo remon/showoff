@@ -8,17 +8,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @errors = nil
-
-    @showoff_user = ShowOff::User.new
-    response = @showoff_user.sign_up(params)
+    @user = User.new(user_params)
     respond_to do |format|
-      if response["user"].nil?
-        @errors = response["message"]
-        format.js
-      else
+      if @user.save
         format.html { redirect_to root_path }
+      else
+        format.js
       end
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
 end
