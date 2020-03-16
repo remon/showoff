@@ -3,9 +3,8 @@
     <p>You need to Sign Up or Sign In to contine </p>
   </div>
 <% else %>
-  <ul>
-    <% @widgets.each do |w| %>
-      <li><%= w.user_data %></li>
-    <% end %>
-  </ul>
+  <div class="row">
+  
+   <%= render partial: "widget", collection: @widgets %>
+  </div>
 <% end %>

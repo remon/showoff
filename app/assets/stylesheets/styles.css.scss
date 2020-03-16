@@ -41,3 +41,45 @@
 .form-body {
   margin-top: 40px;
 }
+.widget-wrapper {
+  padding: 15px 10px;
+
+  margin-bottom: 10px;
+  .widget-main {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    .widget-header {
+      background: #4c6ef5;
+      text-align: center;
+      color: white;
+      font-size: 4rem;
+      padding: 15px 0px;
+    }
+    .widget-name {
+      padding: 5px 12px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    .widget-desc,
+    .widget-user {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 5px 12px;
+      p {
+        margin: 0;
+      }
+    }
+    .widget-user {
+      position: relative;
+      padding-top: 15px;
+      .created-by {
+        position: absolute;
+        top: 0px;
+        font-size: 0.6rem;
+        left: 0px;
+        background: #00a900;
+        color: white;
+        padding: 2px 5px;
+      }
+    }
+  }
+}
