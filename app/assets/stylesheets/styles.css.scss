@@ -59,7 +59,11 @@
       padding: 5px 12px;
       font-size: 0.9rem;
       font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+
     .widget-desc,
     .widget-user {
       border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -71,6 +75,7 @@
     .widget-user {
       position: relative;
       padding-top: 15px;
+
       .created-by {
         position: absolute;
         top: 0px;
@@ -80,6 +85,13 @@
         color: white;
         padding: 2px 5px;
       }
+    }
+    .widget-desc,
+    .widget-name,
+    .widget-user {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
