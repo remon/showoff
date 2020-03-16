@@ -6,9 +6,23 @@ class SessionsController < ApplicationController
     end
   end
 
+  def create
+    @showoff_user = ShowOff::Auth.new
+    @errors = nil
+
+    @user = @showoff_user.login(user_params)
+    if @user["data"].nil?
+      @errors = @user["message"]
+    else
+    end
+  end
+
   def destroy
   end
 
-  def create
+  private
+
+  def user_params
+    params.permit(:username, :password)
   end
 end

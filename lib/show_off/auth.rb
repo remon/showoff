@@ -8,15 +8,13 @@ module ShowOff
       params = args.merge("grant_type": "password",
                           client_id: $client_id,
                           client_secret: $client_secret)
-      user_tokens = nil
+
       begin
         res = RestClient.post($AUTH_CREATE_URL, params.to_json, { content_type: :json, accept: :json })
         body = JSON.parse(res.body)
-        user_tokens = body["data"]
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
       end
-      user_tokens
     end
 
     def logout(token)

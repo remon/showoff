@@ -12,14 +12,15 @@ RSpec.describe "User Authentication" do
 
     it "should login the test user" do
       @user = @showoff_user.login(@user_params)
-      expect(@user).not_to eq(nil)
+
+      expect(@user["data"]).not_to eq(nil)
     end
 
     it "should not authenticate user with wrong data" do
       @user_params["username"] = "notvalidemail@showoff.ie"
       @user = @showoff_user.login(@user_params)
 
-      expect(@user).to eq(nil)
+      expect(@user["data"]).to eq(nil)
     end
   end
 end
