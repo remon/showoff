@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
     if @user["data"].nil?
       @errors = @user["message"]
     else
+      @token = @user["data"]["token"]
+      cookies[:showoff_user] = { value: @token.to_json, :expires => Time.now + @token["expires_in"] }
     end
   end
 

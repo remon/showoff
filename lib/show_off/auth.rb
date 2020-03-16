@@ -2,7 +2,8 @@ module ShowOff
   class Auth
     ####
     #Login method used to authenticate user with username and password
-    #it should return access_token and refresh_token
+    #it should return data user if  authenticated  or no user data if not authenticated
+    #
     ####
     def login(args)
       params = args.merge("grant_type": "password",
