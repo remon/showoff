@@ -35,6 +35,7 @@ class Widget
       if response["data"]
         self.user = response["data"]["widget"]["user"]
         self.id = response["data"]["widget"]["id"]
+        self.owner = true
         return true
       end
 
