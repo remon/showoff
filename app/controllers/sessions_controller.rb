@@ -15,7 +15,11 @@ class SessionsController < ApplicationController
       @errors = @user["message"]
     else
       @token = @user["data"]["token"]
-      cookies[:showoff_user] = { value: @token.to_json, :expires => Time.now + @token["expires_in"] }
+      user_data = {
+        token: @token["access_token"],
+        username: user_params[:username],
+      }
+      cookies[:showoff_user] = { value: user_data.to_json, :expires => Time.now + @token["expires_in"] }
     end
   end
 

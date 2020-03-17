@@ -12,7 +12,7 @@ module ShowOff
         term: q,
       }
       begin
-        res = RestClient.get($WIDGETS_URL_VISIBLE, params: params)
+        res = RestClient.get($WIDGETS_URL_VISIBLE, { params: params, :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)

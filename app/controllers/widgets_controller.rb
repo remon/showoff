@@ -1,5 +1,6 @@
 class WidgetsController < ApplicationController
-  before_action :user_signed_in?
+  before_action :check_login
+  before_action :get_token
 
   def show
   end
@@ -23,9 +24,15 @@ class WidgetsController < ApplicationController
     end
   end
 
+  ####
+  # List All widgets in two cases
+  # if user logged in (shows all widgets with actions)
+  # if user not logged in (shows all public widgets)
+  ####
   def index
-    @showoff_widgets = ShowOff::Widget.new()
+    @showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.list_visible(params[:term])
+
     @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
   end
 

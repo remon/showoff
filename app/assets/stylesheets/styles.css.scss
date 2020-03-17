@@ -175,8 +175,13 @@
   }
 }
 
-@media (min-width: 576px) {
+@media (max-width: 767px) {
   .search_col {
     margin-top: 10px;
   }
+}
+.username-intro {
+  color: white;
+  font-size: 0.5rem;
+  line-height: 25px;
 }
