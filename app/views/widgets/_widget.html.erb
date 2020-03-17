@@ -1,7 +1,11 @@
-<div class="col-sm-6 col-md-4 col-lg-3">
+<div class="col-sm-6 col-md-4 col-lg-3" id="widget_<%= widget.id %>">
   <div class="widget-wrapper">
     <div class="widget-main">
       <div class="widget-header">
+        <div class="ribbon widget-kind"><span><%= widget.kind %></span></div>
+        
+          <%= link_to_if(widget.owner, '<i class="fas fa-trash"></i>'.html_safe, widget_path(widget.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "delete-widget") %>
+        
         <i class="fas fa-cloud"></i>
       </div>
       <div class="widget-name">
@@ -11,7 +15,7 @@
         <p><%= widget.description %></p>
       </div>
       <div class="widget-user">
-      <span class="created-by">Created By </span>
+        <span class="created-by">Created By </span>
         <%= widget.user_name %>
       </div>
     </div>

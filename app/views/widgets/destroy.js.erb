@@ -1,0 +1,7 @@
+<% if @widget.errors.any? %>
+  alert("<%= @widget.errors.full_messages.first %>");
+
+  <% else %>
+$("#widget_<%= @widget.id %>").fadeOut(800)
+
+<% end %>

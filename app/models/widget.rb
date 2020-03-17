@@ -1,14 +1,27 @@
 class Widget
   include ActiveModel::Model
   include ActiveModel::Serialization
-  attr_accessor :name, :description, :kind, :token, :user_name
+  attr_accessor :id, :name, :description, :kind, :token, :user, :owner
   validates :name, :description, :kind, presence: true
   validates :kind, inclusion: { in: %w(hidden visible) }, :allow_blank => true
+
+  def user_name
+    UserData.new(user).name
+  end
 
   def attributes
     { name: "",
       description: "",
       kind: "" }
+  end
+
+  def destroy
+    @showoff_widget = ShowOff::Widget.new(token)
+    response = @showoff_widget.delete(id)
+    return true if !response["data"].nil?
+
+    self.errors.add(:base, response["message"])
+    return false
   end
 
   def save
@@ -20,7 +33,8 @@ class Widget
       @showoff_widget = ShowOff::Widget.new(token)
       response = @showoff_widget.make_widget(widget_params)
       if response["data"]
-        self.user_name = response["data"]["widget"]["user"]["name"]
+        self.user = response["data"]["widget"]["user"]
+        self.id = response["data"]["widget"]["id"]
         return true
       end
 
