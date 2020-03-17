@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  before_action :check_login, only: [:show]
+  before_action :get_token, only: [:show]
+
+  def show
+    @showoff_user = ShowOff::User.new(@access_token)
+    @user = @showoff_user.show(params[:id])
+  end
+
   def new
     @user = User.new
     respond_to do |format|

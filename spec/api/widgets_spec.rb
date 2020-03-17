@@ -23,6 +23,12 @@ RSpec.describe "Widgets" do
       }
       @widget = Widget.new(@widget_params)
     end
+    it "should list all visible widgets (no authentication)" do
+      @showoff_widget = ShowOff::Widget.new()
+      @widgets = @showoff_widget.list_visible
+
+      expect(@widgets["data"]).not_to eq(nil)
+    end
 
     it "create a new widget(visible)" do
       @widget.save
@@ -55,11 +61,6 @@ RSpec.describe "Widgets" do
       @widget.update_attributes(widget_params)
 
       expect(@widget.errors.count).to eq(0)
-    end
-    it "should list all widgets" do
-      @showoff_widget = ShowOff::Widget.new(@token)
-      @widgets = @showoff_widget.list
-      expect(@widgets["data"]).not_to eq(nil)
     end
 
     it "should delete the created widget" do

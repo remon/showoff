@@ -1,9 +1,24 @@
 module ShowOff
   class User
+    def initialize(token = nil)
+      @token = token
+      @auth = "Bearer #{@token}"
+    end
+
+    def show(id)
+      begin
+        res = RestClient.get($AUTH_USERS_URL + "/#{id}", { :Authorization => @auth })
+        body = JSON.parse(res.body)
+      rescue RestClient::ExceptionWithResponse => err
+        JSON.parse(err.response.body)
+      end
+    end
+
     ####
     # check email method is used to check email availability
     # return boolean (true , false)
     ####
+
     def check_email(email)
       params = {
         email: email,
