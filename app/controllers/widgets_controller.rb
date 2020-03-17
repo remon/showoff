@@ -38,7 +38,7 @@ class WidgetsController < ApplicationController
 
   def destroy
     @widget = Widget.new(id: params[:id])
-    @widget.token = JSON.parse(cookies[:showoff_user])["access_token"]
+    @widget.token = @access_token
 
     @widget.destroy
 
@@ -50,7 +50,6 @@ class WidgetsController < ApplicationController
   private
 
   def widget_params
-    token = JSON.parse(cookies[:showoff_user])["access_token"]
-    params.require(:widget).permit(:name, :description, :kind).merge({ token: token })
+    params.require(:widget).permit(:name, :description, :kind).merge({ token: @access_token })
   end
 end

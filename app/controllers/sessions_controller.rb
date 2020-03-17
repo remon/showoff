@@ -24,6 +24,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    cookies.delete :showoff_user, :domain => :all
+    redirect_to root_path
   end
 
   private
