@@ -15,6 +15,20 @@ class Widget
       kind: "" }
   end
 
+  def update_attributes(params)
+    self.errors.clear
+    @showoff_widget = ShowOff::Widget.new(token)
+    response = @showoff_widget.update(id, params)
+
+    if !response["data"].nil?
+      self.attributes = params
+      return true
+    end
+
+    self.errors.add(:base, "An Error While updating the widget")
+    return false
+  end
+
   def destroy
     @showoff_widget = ShowOff::Widget.new(token)
     response = @showoff_widget.delete(id)

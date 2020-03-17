@@ -36,6 +36,26 @@ RSpec.describe "Widgets" do
       expect(@widget2.errors.full_messages[0]).to eq("Name has already been taken")
     end
 
+    it "shouldn't update the widget if name is blank" do
+      widget_params = {
+        name: "",
+
+      }
+
+      @widget.update_attributes(widget_params)
+
+      expect(@widget.errors.full_messages[0]).to eq("An Error While updating the widget")
+    end
+    it "should update the widget name" do
+      widget_params = {
+        name: @widget.name + " new updated name ",
+
+      }
+
+      @widget.update_attributes(widget_params)
+
+      expect(@widget.errors.count).to eq(0)
+    end
     it "should list all widgets" do
       @showoff_widget = ShowOff::Widget.new(@token)
       @widgets = @showoff_widget.list

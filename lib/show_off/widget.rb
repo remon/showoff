@@ -23,6 +23,18 @@ module ShowOff
       end
     end
 
+    def update(id, params)
+      widget_params = {
+        widget: params,
+      }
+      begin
+        res = RestClient.put($WIDGETS_URL + "/#{id}", widget_params, { :Authorization => @auth })
+        body = JSON.parse(res.body)
+      rescue RestClient::ExceptionWithResponse => err
+        JSON.parse(err.response.body)
+      end
+    end
+
     def delete(id)
       begin
         res = RestClient.delete($WIDGETS_URL + "/#{id}", { :Authorization => @auth })
