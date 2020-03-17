@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
         username: user_params[:username],
       }
       cookies[:showoff_user] = { value: user_data.to_json, :expires => Time.now + @token["expires_in"] }
+      redirect_to root_path
     end
   end
 
