@@ -168,3 +168,15 @@
   border-bottom: 3px solid transparent;
   border-top: 3px solid #3ea780;
 }
+.search_term_wrapper {
+  input {
+    height: 38px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 576px) {
+  .search_col {
+    margin-top: 10px;
+  }
+}

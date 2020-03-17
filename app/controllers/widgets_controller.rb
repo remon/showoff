@@ -24,19 +24,9 @@ class WidgetsController < ApplicationController
   end
 
   def index
-    unless @must_login
-      @token = JSON.parse(cookies[:showoff_user])["access_token"]
-      @showoff_widgets = ShowOff::Widget.new(@token)
-      @widgets_data = @showoff_widgets.list
-
-      if @widgets_data["data"].nil?
-        @must_login = true
-        #TODO : Reset Cookies
-
-      else
-        @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
-      end
-    end
+    @showoff_widgets = ShowOff::Widget.new()
+    @widgets_data = @showoff_widgets.list_visible(params[:term])
+    @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
   end
 
   def destroy

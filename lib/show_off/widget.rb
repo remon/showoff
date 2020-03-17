@@ -1,8 +1,22 @@
 module ShowOff
   class Widget
-    def initialize(token)
+    def initialize(token = nil)
       @token = token
       @auth = "Bearer #{@token}"
+    end
+
+    def list_visible(q = "")
+      params = {
+        client_id: $client_id,
+        client_secret: $client_secret,
+        term: q,
+      }
+      begin
+        res = RestClient.get($WIDGETS_URL_VISIBLE, params: params)
+        body = JSON.parse(res.body)
+      rescue RestClient::ExceptionWithResponse => err
+        JSON.parse(err.response.body)
+      end
     end
 
     def list
