@@ -1,19 +1,14 @@
 <% if @must_login %>
   <div class="need_login">
-
     <p>You need to 
-   
-            <%= link_to "Sign Up",
-                        signup_path,
-                        rel: "modal:open" %>
-          
-          or 
-            <%= link_to "Sign In",
-                        login_path,
-                        rel: "modal:open" %>
-         
-    
-     to contine </p>
+      <%= link_to "Sign Up",
+                  signup_path,
+                  rel: "modal:open" %>
+      or 
+      <%= link_to "Sign In",
+                  login_path,
+                  rel: "modal:open" %>
+      to contine </p>
   </div>
 <% else %>
   <div class="container">
@@ -30,6 +25,12 @@
     </div>
   </div>
   <div class="row all-widgets">
-    <%= render partial: "widget", collection: @widgets %>
+    <% if @widgets.any? %>
+      <%= render partial: "widget", collection: @widgets %>
+    <% else %>
+      <div class="no_widgets container">
+        <p> You don't have any widgets yet , start by creating one</p>
+      </div>
+    <% end %>
   </div>
 <% end %>
