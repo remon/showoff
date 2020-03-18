@@ -185,3 +185,23 @@
   font-size: 0.5rem;
   line-height: 25px;
 }
+.need_login {
+  text-align: center;
+  p {
+    width: auto;
+    border: 1px solid #f56f6f;
+    float: none;
+    margin: 3em auto;
+    overflow: hidden;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 5px;
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=0, Color=#825A51)"; /*IE 8*/
+    -moz-box-shadow: 0 2px 4px 4px #825a51; /*FF 3.5+*/
+    -webkit-box-shadow: 0 2px 4px 4px #825a51; /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+    box-shadow: 0 2px 4px 4px #825a51; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#825A51); /*IE 5.5-7*/
+    font-size: 1.2rem;
+  }
+}

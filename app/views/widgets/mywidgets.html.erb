@@ -1,6 +1,19 @@
 <% if @must_login %>
   <div class="need_login">
-    <p>You need to Sign Up or Sign In to contine </p>
+
+    <p>You need to 
+   
+            <%= link_to "Sign Up",
+                        signup_path,
+                        rel: "modal:open" %>
+          
+          or 
+            <%= link_to "Sign In",
+                        login_path,
+                        rel: "modal:open" %>
+         
+    
+     to contine </p>
   </div>
 <% else %>
   <div class="container">
