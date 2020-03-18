@@ -1,10 +1,33 @@
 module ShowOff
   class User
+    attr_accessor :token
+
     def initialize(token = nil)
       @token = token
       @auth = "Bearer #{@token}"
     end
 
+    def set_token(token)
+      @token = token
+      @auth = "Bearer #{@token}"
+    end
+
+    ####
+    # Should return the user own profile data
+    ####
+
+    def profile
+      begin
+        res = RestClient.get(ShowOff::Constants::LOGGED_IN_USER_URL, { :Authorization => @auth })
+        body = JSON.parse(res.body)
+      rescue RestClient::ExceptionWithResponse => err
+        JSON.parse(err.response.body)
+      end
+    end
+
+    ####
+    # Should return user data based on user_id
+    ####
     def show(id)
       begin
         res = RestClient.get(ShowOff::Constants::AUTH_USERS_URL + "/#{id}", { :Authorization => @auth })
