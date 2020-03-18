@@ -10,12 +10,12 @@
  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">  
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track': "reload" %>
 </head>
 
 <body id="page-top">
-<%=render "partials/top_nav"%>
+<%= render "partials/top_nav" %>
 <div class="container-fluid page-body">
   <%= yield %>
 
