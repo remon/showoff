@@ -1,15 +1,22 @@
 class UsersController < ApplicationController
   before_action :check_login, only: [:show, :me]
   before_action :get_token, only: [:show, :me]
+  before_action :set_showoff_user, only: [:me, :show]
 
   def me
-    @showoff_user = ShowOff::User.new(@access_token)
-    @user = @showoff_user.profile
+    #    @showoff_user = ShowOff::User.new(@access_token)
+    @user_data = @showoff_user.profile
   end
 
   def show
-    @showoff_user = ShowOff::User.new(@access_token)
-    @user = @showoff_user.show(params[:id])
+    #   @showoff_user = ShowOff::User.new(@access_token)
+    @user_data = @showoff_user.show(params[:id])
+    @error_msg = nil
+    if @user_data["data"]
+      @user = User.new(@user_data["data"]["user"])
+    else
+      @error_msg = @user_data["message"]
+    end
   end
 
   def new
