@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 
   def me
     @user_data = @showoff_user.profile
+    if @user_data["data"]
+      @user = User.new(@user_data["data"]["user"])
+    else
+      @need_login = true
+    end
   end
 
   def show

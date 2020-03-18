@@ -1,7 +1,7 @@
 class User
   include ActiveModel::Model
   include ActiveModel::Serialization
-  attr_accessor :first_name, :last_name, :email, :password, :image_url, :name, :id, :images, :token
+  attr_accessor :first_name, :last_name, :email, :password, :image_url, :name, :id, :date_of_birth, :active, :images, :token
 
   #custom model validations to reduce API calls
   validates :first_name, :last_name, :email, :password, presence: true

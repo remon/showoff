@@ -1,1 +1,27 @@
-<%= @user %>
+<% if @need_login %>
+  <%= render "partials/need_login" %>
+<% else %>
+  <div class="user-image container-fluid">
+    <div class="user-image-insider">
+      <%= image_tag @user.images["original_url"], alt: @user.name %>
+    </div>
+  </div>
+  <div class="user-data-wrapper container-fluid">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td><%= @user.first_name %></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td><%= @user.last_name %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
