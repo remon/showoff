@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
-  before_action :check_login, only: [:show]
-  before_action :get_token, only: [:show]
+  before_action :check_login, only: [:show, :me]
+  before_action :get_token, only: [:show, :me]
+
+  def me
+    @showoff_user = ShowOff::User.new(@access_token)
+    @user = @showoff_user.profile
+  end
 
   def show
     @showoff_user = ShowOff::User.new(@access_token)
