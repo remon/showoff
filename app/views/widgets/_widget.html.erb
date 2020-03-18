@@ -2,8 +2,13 @@
   <div class="widget-wrapper">
     <div class="widget-main">
       <div class="widget-header">
-        <div class="ribbon widget-kind"><span><%= widget.kind %></span></div>
-        <%= link_to_if(widget.owner, '<i class="fas fa-trash"></i>'.html_safe, widget_path(widget.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "delete-widget") %>
+        <div class="ribbon widget-kind">
+          <span><%= widget.kind %></span>
+        </div>
+        <% if widget.owner %>
+          <%= link_to_if(widget.owner, '<i class="far fa-edit"></i>'.html_safe, edit_widget_path(widget.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "edit-widget") %>
+          <%= link_to '<i class="fas fa-trash"></i>'.html_safe, widget_path(widget.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "delete-widget" %>
+        <% end %>
         <i class="fas fa-cloud"></i>
       </div>
       <div class="widget-name">

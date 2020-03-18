@@ -56,7 +56,8 @@
       padding: 15px 0px;
       position: relative;
 
-      .delete-widget {
+      .delete-widget,
+      .edit-widget {
         position: absolute;
         font-size: 1rem;
         right: 5px;
@@ -72,6 +73,10 @@
         &:hover {
           opacity: 1;
         }
+      }
+      .edit-widget {
+        right: 40px;
+        color: white;
       }
     }
     .widget-name {
@@ -174,7 +179,15 @@
     margin-right: 10px;
   }
 }
-
+.index_search_col {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  padding-top: 10px;
+  .search-wrapper {
+    display: inline-block;
+  }
+}
 @media (max-width: 767px) {
   .search_col {
     margin-top: 10px;
