@@ -2,6 +2,7 @@
   $(".errors_area").html("<ul><%= custom_errors_list(@widget.errors.full_messages) %> </ul>");
 <% else %>
   $.modal.close();
+  $(".no_widgets").remove();
   $(".all-widgets").prepend("<%= escape_javascript(render partial: "animated_widget", locals: { widget: @widget }) %>");   
   $(".animated_widget").fadeIn(1500);
 <% end %>
