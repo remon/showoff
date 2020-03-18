@@ -13,3 +13,7 @@ script:
   - bundle install
   - bundle exec rake db:migrate
   - bundle exec rspec
+deploy:
+  api_key:
+    secure: S15TGQsOnm1ewrGngisrNimkwjLv9bpNMDeN5YTqe4r4kNv8MvBK5gh6/+CswxAD2WZUKl0ppZPr9wrEilPSdxiXB9PCjWuGX3VRa+jE21p38gz1jZhTf0M6Bp3AyvE1PZmEJP3Usd7RZrdmlnfOLgHof2Gtmr398o/mYSr5Hb/jzJ4XLreIGFPD2aI9HT8pYLSm+I+l6DB7LnykTXBg9mH5SL2zWqNrSnqjNL7J85ZMGyfoxCz9uqJhCGb7thFPrg6UBChMomnQDgWcwFiBf1+I9f3YSkbp+4RJ+ybq33J54tjSKN1X0YKTolboLcSKlVe/kCMC4Y0DBE2pAawiokYxZYvJParKyT2F95KoFRv9FNO35mximG8u4y/dS9LPB2cyAyxCC2sQUhCmlSksEfGCQ46o5XA674o3hCRIeA2AV3FxtRYRXZPDb6YPOoFKWorvZDvo0a4MLwoS06q2QUFrTbc2a+eB5ZevSu16w307/M11bsZJA5O4/Uo03wTVYfS+gtzL6siDvJ3Hob2piu5apLz6FSbikV31t/4VGZPZMv60bo6e4Vz4eKtvYLkJla6giAwX0kv8iKomH3ouAGSM5pp7av+k3mAP87r6vFVfN3kRK/Jud/TStQ6lTa6czeLLWiSOj1UkEcTsagJTZRMXd2W03FK/fjSUqM0/dFc=
+  app: showoff-prod
