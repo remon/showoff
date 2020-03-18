@@ -4,18 +4,18 @@ class UsersController < ApplicationController
   before_action :set_showoff_user, only: [:me, :show]
 
   def me
-    #    @showoff_user = ShowOff::User.new(@access_token)
     @user_data = @showoff_user.profile
   end
 
   def show
-    #   @showoff_user = ShowOff::User.new(@access_token)
     @user_data = @showoff_user.show(params[:id])
-    @error_msg = nil
+
     if @user_data["data"]
       @user = User.new(@user_data["data"]["user"])
+    elsif @user_data["code"] == 3
+      @user_not_found = true
     else
-      @error_msg = @user_data["message"]
+      @need_login = true
     end
   end
 

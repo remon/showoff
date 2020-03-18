@@ -1,6 +1,8 @@
-<% if @error_msg %>
+<% if @need_login %>
+  <%= render "partials/need_login" %>
+<% elsif @user_not_found %>
   <div class="need_login">
-    <p><%= @error_msg %> </p>
+    <p> User with id# <%= params[:id] %> isn't found </p>
   </div>
 <% else %>
   <div class="user-image container-fluid">
