@@ -12,16 +12,20 @@ module ShowOff
         term: q,
       }
       begin
-        res = RestClient.get($WIDGETS_URL_VISIBLE, { params: params, :Authorization => @auth })
+        res = RestClient.get(ShowOff::Constants::WIDGETS_URL_VISIBLE, { params: params, :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
       end
     end
 
-    def list
+    ###
+    # list all logged in user widgets (access tokens are required)
+    # should returns all widgets  or session is expired if access are wrong or expired
+    ###
+    def logged_in_user_widgets
       begin
-        res = RestClient.get($WIDGETS_URL, { :Authorization => @auth })
+        res = RestClient.get(ShowOff::Constants::USER_WIDGETS_URL, { :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
@@ -30,7 +34,7 @@ module ShowOff
 
     def make_widget(widget_params)
       begin
-        res = RestClient.post($WIDGETS_URL, widget_params, { :Authorization => @auth })
+        res = RestClient.post(ShowOff::Constants::WIDGETS_URL, widget_params, { :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
@@ -42,7 +46,7 @@ module ShowOff
         widget: params,
       }
       begin
-        res = RestClient.put($WIDGETS_URL + "/#{id}", widget_params, { :Authorization => @auth })
+        res = RestClient.put(ShowOff::Constants::WIDGETS_URL + "/#{id}", widget_params, { :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
@@ -51,7 +55,7 @@ module ShowOff
 
     def delete(id)
       begin
-        res = RestClient.delete($WIDGETS_URL + "/#{id}", { :Authorization => @auth })
+        res = RestClient.delete(ShowOff::Constants::WIDGETS_URL + "/#{id}", { :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)

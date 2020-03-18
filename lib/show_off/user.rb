@@ -7,7 +7,7 @@ module ShowOff
 
     def show(id)
       begin
-        res = RestClient.get($AUTH_USERS_URL + "/#{id}", { :Authorization => @auth })
+        res = RestClient.get(ShowOff::Constants::AUTH_USERS_URL + "/#{id}", { :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
@@ -27,7 +27,7 @@ module ShowOff
       }
 
       begin
-        res = RestClient.get($AUTH_USERS_URL_CHECK, params: params)
+        res = RestClient.get(ShowOff::Constants::AUTH_USERS_URL_CHECK, params: params)
         body = JSON.parse(res.body)
         return body["data"]["available"]
       rescue RestClient::ExceptionWithResponse => err
@@ -47,7 +47,7 @@ module ShowOff
       )
 
       begin
-        res = RestClient.post($AUTH_USERS_URL, params.to_json, { content_type: :json, accept: :json })
+        res = RestClient.post(ShowOff::Constants::AUTH_USERS_URL, params.to_json, { content_type: :json, accept: :json })
         body = JSON.parse(res.body)
         user_data = body["data"]
       rescue RestClient::ExceptionWithResponse => err

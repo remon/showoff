@@ -11,7 +11,7 @@ module ShowOff
                           client_secret: $client_secret)
 
       begin
-        res = RestClient.post($AUTH_CREATE_URL, params.to_json, { content_type: :json, accept: :json })
+        res = RestClient.post(ShowOff::Constants::AUTH_CREATE_URL, params.to_json, { content_type: :json, accept: :json })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
@@ -22,7 +22,7 @@ module ShowOff
       auth = "Bearer #{token}"
 
       begin
-        res = RestClient.get($AUTH_REVOKE_URL, { :Authorization => auth })
+        res = RestClient.get(ShowOff::Constants::AUTH_REVOKE_URL, { :Authorization => auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)

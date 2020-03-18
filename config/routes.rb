@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "signup", to: "users#new", as: "signup"
   get "login", to: "sessions#new", as: "login"
   get "me", to: "users#me", as: "me"
-  get "me/widgets", to: "users#user_widgets", as: "mywidgets"
+  get "mywidgets", to: "widgets#mywidgets", as: "mywidgets"
   delete "logout", to: "sessions#destroy", as: "logout"
   resources :sessions
   resources :users
