@@ -24,9 +24,14 @@ RSpec.describe "Widgets" do
       @widget = Widget.new(@widget_params)
     end
     it "should list all visible widgets (no authentication)" do
-      @showoff_widget = ShowOff::Widget.new()
+      @showoff_widget = ShowOff::Widget.new(@token)
       @widgets = @showoff_widget.list_visible
 
+      expect(@widgets["data"]).not_to eq(nil)
+    end
+    it "should list all logged in user widgets" do
+      @showoff_widget = ShowOff::Widget.new(@token)
+      @widgets = @showoff_widget.logged_in_user_widgets
       expect(@widgets["data"]).not_to eq(nil)
     end
 

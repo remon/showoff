@@ -49,7 +49,7 @@ class WidgetsController < ApplicationController
 
   def mywidgets
     @showoff_widgets = ShowOff::Widget.new(@access_token)
-    @widgets_data = @showoff_widgets.logged_in_user_widgets
+    @widgets_data = @showoff_widgets.logged_in_user_widgets(params[:term])
 
     @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
     ####

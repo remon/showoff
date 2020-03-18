@@ -23,9 +23,14 @@ module ShowOff
     # list all logged in user widgets (access tokens are required)
     # should returns all widgets  or session is expired if access are wrong or expired
     ###
-    def logged_in_user_widgets
+    def logged_in_user_widgets(q = "")
       begin
-        res = RestClient.get(ShowOff::Constants::USER_WIDGETS_URL, { :Authorization => @auth })
+        params = {
+          client_id: $client_id,
+          client_secret: $client_secret,
+          term: q,
+        }
+        res = RestClient.get(ShowOff::Constants::USER_WIDGETS_URL, { params: params, :Authorization => @auth })
         body = JSON.parse(res.body)
       rescue RestClient::ExceptionWithResponse => err
         JSON.parse(err.response.body)
