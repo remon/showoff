@@ -2,6 +2,7 @@
   <%= render "partials/need_login" %>
 <% else %>
   <div class="user-image container-fluid">
+  <div class="">
     <div class="user-image-insider">
       <%= image_tag @user.images["original_url"], alt: @user.name %>
     </div>
