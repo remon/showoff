@@ -27,7 +27,7 @@ class WidgetsController < ApplicationController
   def edit
     @showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.show(params[:id])
-    if @widgets_data["data"]
+    if @widgets_data["data"] and @widgets_data["data"]["widget"]["owner"]
       @widget = Widget.new(@widgets_data["data"]["widget"])
     end
     respond_to do |format|
