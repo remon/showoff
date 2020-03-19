@@ -1,6 +1,7 @@
 class WidgetsController < ApplicationController
   before_action :check_login
   before_action :get_token
+  before_action :set_showoff_widgets, only: [:index, :edit, :update, :mywidgets]
 
   def show
   end
@@ -25,7 +26,6 @@ class WidgetsController < ApplicationController
   end
 
   def edit
-    @showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.show(params[:id])
     if @widgets_data["data"] and @widgets_data["data"]["widget"]["owner"]
       @widget = Widget.new(@widgets_data["data"]["widget"])
@@ -45,7 +45,7 @@ class WidgetsController < ApplicationController
   # if user not logged in (shows all public widgets)
   ####
   def index
-    @showoff_widgets = ShowOff::Widget.new(@access_token)
+    #@showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.list_visible(params[:term])
 
     @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
@@ -63,7 +63,7 @@ class WidgetsController < ApplicationController
   end
 
   def mywidgets
-    @showoff_widgets = ShowOff::Widget.new(@access_token)
+    #@showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.logged_in_user_widgets(params[:term])
     if @widgets_data["data"].nil?
       @must_login = true
@@ -76,6 +76,10 @@ class WidgetsController < ApplicationController
   end
 
   private
+
+  def set_showoff_widgets
+    @showoff_widgets = ShowOff::Widget.new(@access_token)
+  end
 
   def widget_params
     params.require(:widget).permit(:name, :description, :kind).merge({ token: @access_token })
