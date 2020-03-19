@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
+
   def user_signed_in?
     return true if cookies[:showoff_user].present?
     return false
