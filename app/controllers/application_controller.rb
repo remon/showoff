@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
     @access_token = JSON.parse(cookies[:showoff_user])["token"] if user_signed_in?
   end
 
-  def set_showoff_user
-    @showoff_user = ShowOff::User.new(@access_token)
-  end
-
   def get_user_name
     JSON.parse(cookies[:showoff_user])["username"]
   end

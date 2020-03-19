@@ -45,7 +45,6 @@ class WidgetsController < ApplicationController
   # if user not logged in (shows all public widgets)
   ####
   def index
-    #@showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.list_visible(params[:term])
 
     @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
@@ -62,17 +61,16 @@ class WidgetsController < ApplicationController
     end
   end
 
+  ####
+  # List Logged In User  widgets
+  ####
   def mywidgets
-    #@showoff_widgets = ShowOff::Widget.new(@access_token)
     @widgets_data = @showoff_widgets.logged_in_user_widgets(params[:term])
     if @widgets_data["data"].nil?
       @must_login = true
     else
       @widgets = @widgets_data["data"]["widgets"].map { |i| Widget.new(i) }
     end
-    ####
-    # List Logged In User  widgets
-    ####
   end
 
   private
