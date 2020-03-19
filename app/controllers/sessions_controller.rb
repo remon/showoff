@@ -1,4 +1,17 @@
 class SessionsController < ApplicationController
+  def reset_password
+    respond_to do |format|
+      format.js { render layout: false } # Add this line to you respond_to block
+      format.html
+    end
+  end
+
+  def send_reset_instructions
+    @showoff_user = ShowOff::Auth.new
+    @reset_password = @showoff_user.reset_password(params)
+    @error_msg = @reset_password["message"] if @reset_password["code"].to_i == 3
+  end
+
   def new
     respond_to do |format|
       format.js { render layout: false } # Add this line to you respond_to block
