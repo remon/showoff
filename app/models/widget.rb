@@ -17,7 +17,8 @@ class Widget
 
   def update_attributes(params)
     self.errors.clear
-    @showoff_widget = ShowOff::Widget.new(token)
+    @showoff_widget = ShowOff::Widget.new()
+    @showoff_widget.set_token(token)
     response = @showoff_widget.update(id, params)
 
     if !response["data"].nil?

@@ -31,12 +31,21 @@ class WidgetsController < ApplicationController
       @widget = Widget.new(@widgets_data["data"]["widget"])
     end
     respond_to do |format|
-      format.js { render layout: false } # Add this line to you respond_to block
+      format.js { render layout: false }
       format.html
     end
   end
 
   def update
+    @widget = Widget.new(id: params[:id])
+    @widget.token = @access_token
+    respond_to do |format|
+      if @widget.update_attributes(widget_params.except(:token).to_h)
+        format.js
+      else
+        format.js
+      end
+    end
   end
 
   ####

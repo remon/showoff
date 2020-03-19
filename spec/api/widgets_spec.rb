@@ -51,6 +51,7 @@ RSpec.describe "Widgets" do
       @widget_show = @showoff_widget.show(@widget.id)
       expect(@widget_show["data"]).not_to eq(nil)
     end
+
     it "shouldn't update the widget if name is blank" do
       widget_params = {
         name: "",

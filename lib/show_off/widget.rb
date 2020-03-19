@@ -1,6 +1,13 @@
 module ShowOff
   class Widget
+    attr_accessor :token
+
     def initialize(token = nil)
+      @token = token
+      @auth = "Bearer #{@token}"
+    end
+
+    def set_token(token)
       @token = token
       @auth = "Bearer #{@token}"
     end
@@ -63,6 +70,7 @@ module ShowOff
       widget_params = {
         widget: params,
       }
+
       begin
         res = RestClient.put(ShowOff::Constants::WIDGETS_URL + "/#{id}", widget_params, { :Authorization => @auth })
         body = JSON.parse(res.body)
