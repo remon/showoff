@@ -6,7 +6,7 @@
           <span><%= widget.kind %></span>
         </div>
         <% if widget.owner %>
-          <%= link_to_if(widget.owner, '<i class="far fa-edit"></i>'.html_safe, edit_widget_path(widget.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "edit-widget") %>
+          <%= link_to_if(widget.owner, '<i class="far fa-edit"></i>'.html_safe, edit_widget_path(widget.id), rel: "modal:open", remote: true, class: "edit-widget") %>
           <%= link_to '<i class="fas fa-trash"></i>'.html_safe, widget_path(widget.id), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "delete-widget" %>
         <% end %>
         <i class="fas fa-cloud"></i>

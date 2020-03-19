@@ -5,6 +5,19 @@ module ShowOff
       @auth = "Bearer #{@token}"
     end
 
+    def show(id)
+      begin
+        params = {
+          client_id: $client_id,
+          client_secret: $client_secret,
+        }
+        res = RestClient.get(ShowOff::Constants::WIDGETS_URL + "/#{id}", { :Authorization => @auth })
+        body = JSON.parse(res.body)
+      rescue RestClient::ExceptionWithResponse => err
+        JSON.parse(err.response.body)
+      end
+    end
+
     def list_visible(q = "")
       params = {
         client_id: $client_id,

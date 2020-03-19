@@ -1,0 +1,40 @@
+<div class="inside-modal-header">
+  Edit Widget
+</div>
+<% if @widget %>
+  <div class="form-body">
+    <%= form_for @widget, method: :PUT, url: widget_path(@widget.id), remote: true do |f| %>
+      <div class="errors_area">
+      </div>
+      <div class="form-group row">
+        <div class="col-4">
+          <%= f.label :name %>
+        </div>
+        <div class="col-8">
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-4">
+          <%= f.label :description %>
+        </div>
+        <div class="col-8">
+          <%= f.text_area :description, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-4">
+          <%= f.label :kind %>
+        </div>
+        <div class="col-8">
+          <%= f.select :kind, ["visible", "hidden"].collect { |p| [p.titleize, p] } %>
+        </div>
+      </div>
+      <%= f.submit "Update Widget", class: "btn btn-success" %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="form-body">
+    <p> There is an error while loading the widget #<%= params[:id] %></p>
+  </p>
+<% end %>

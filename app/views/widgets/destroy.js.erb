@@ -4,7 +4,7 @@
   <% else %>
 $("#widget_<%= @widget.id %>").fadeOut(800 , function(e){
   $(this).remove();
-  if ($(".widg").length < 1){
+  if ($(".wigd").length < 1){
     $(".all-widgets").prepend("<div class='no_widgets container'><p> You don't have any widgets yet , start by creating one</p></div>");   
 
   }

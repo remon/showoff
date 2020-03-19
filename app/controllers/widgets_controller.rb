@@ -24,6 +24,21 @@ class WidgetsController < ApplicationController
     end
   end
 
+  def edit
+    @showoff_widgets = ShowOff::Widget.new(@access_token)
+    @widgets_data = @showoff_widgets.show(params[:id])
+    if @widgets_data["data"]
+      @widget = Widget.new(@widgets_data["data"]["widget"])
+    end
+    respond_to do |format|
+      format.js { render layout: false } # Add this line to you respond_to block
+      format.html
+    end
+  end
+
+  def update
+  end
+
   ####
   # List All widgets in two cases
   # if user logged in (shows all widgets with actions)
