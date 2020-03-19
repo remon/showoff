@@ -6,7 +6,7 @@
 
 - Rails Version 5.2.4
 
-Check [Demo](http://github.com) on [Heroku](http://heroku.com)
+Check [Demo](http://showoff-prod.herokuapp.com/) on [Heroku](http://heroku.com)
 
 ### Run locally
 
