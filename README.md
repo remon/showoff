@@ -1,5 +1,7 @@
 ## SHOWOFF APP
 
+[![Build Status](https://travis-ci.org/remon/showoff.svg?branch=master)](https://travis-ci.org/remon/showoff)
+
 ### A Ruby on Rails Application for interacting with ShowOff API
 
 - Ruby version : 2.5.3
