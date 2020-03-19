@@ -41,7 +41,7 @@ class UsersController < ApplicationController
           token: @token["access_token"],
           username: @user.email,
         }
-        cookies[:showoff_user] = { value: user_data.to_json, :expires => Time.now + @token["expires_in"] }
+        cookies[:showoff_user] = { domain: URI(request.host), value: user_data.to_json, :expires => Time.now + @token["expires_in"] }
         puts @token["expires_in"].to_s
         format.html { redirect_to root_path }
       else

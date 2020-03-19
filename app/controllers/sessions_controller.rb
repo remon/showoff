@@ -19,17 +19,14 @@ class SessionsController < ApplicationController
         token: @token["access_token"],
         username: user_params[:username],
       }
-      cookies[:showoff_user] = { value: user_data.to_json, :expires => Time.now + @token["expires_in"] }
+      cookies[:showoff_user] = { domain: URI(request.host), value: user_data.to_json, :expires => Time.now + @token["expires_in"] }
       redirect_to root_path
     end
   end
 
   def destroy
-    if Rails.env == "development"
-      cookies.delete :showoff_user, :domain => :all
-    else
-      cookies.delete :showoff_user, :domain => ".herokuapp.com"
-    end
+    cookies.delete :showoff_user, :domain => URI(request.host)
+
     redirect_to root_path
   end
 
