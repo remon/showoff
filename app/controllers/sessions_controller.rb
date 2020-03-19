@@ -25,7 +25,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    cookies.delete :showoff_user, :domain => :all
+    if Rails.env == "development"
+      cookies.delete :showoff_user, :domain => :all
+    else
+      cookies.delete :showoff_user, :domain => ".herokuapp.com"
+    end
     redirect_to root_path
   end
 
