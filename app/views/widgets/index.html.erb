@@ -1,20 +1,21 @@
-
 <% if @must_login %>
   <div class="need_login">
     <p>You need to Sign Up or Sign In to contine </p>
   </div>
 <% else %>
-  <div class="container-fluid index_search_col">
-    
-     
+  
+    <div class="container-fluid index_search_col">
       <div class="search-wrapper">
         <%= render "search" %>
       </div>
-    
-  </div>
-
-  
-  <div class="row all-widgets">
-    <%= render partial: "widget", collection: @widgets %>
-  </div>
+    </div>
+    <% if @widgets.count > 0 %>
+    <div class="row all-widgets">
+      <%= render partial: "widget", collection: @widgets %>
+    </div>
+  <% else %>
+  <div class="no_widgets container">
+        <p>There are no widgets with the term <%= params[:term] %></p>
+      </div>
+  <% end %>
 <% end %>
