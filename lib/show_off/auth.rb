@@ -21,7 +21,6 @@ module ShowOff
     ####
     #Login method used to authenticate user with username and password
     #it should return data user if  authenticated  or no user data if not authenticated
-    #
     ####
     def login(args)
       params = args.merge("grant_type": "password",
@@ -36,6 +35,9 @@ module ShowOff
       end
     end
 
+    ####
+    # logout the user method
+    ####
     def logout(token)
       auth = "Bearer #{token}"
 
