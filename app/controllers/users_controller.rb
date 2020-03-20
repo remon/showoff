@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     respond_to do |format|
-      format.js { render layout: false } # Add this line to you respond_to block
+      format.js { render layout: false }
       format.html
     end
   end
